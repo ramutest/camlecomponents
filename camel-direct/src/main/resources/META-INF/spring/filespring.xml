@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Configures the Camel Context -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camel="http://camel.apache.org/schema/spring"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+	<camel:camelContext xmlns="http://camel.apache.org/schema/spring">
+		<!-- we can have a route -->
+		<route id="cool">
+
+			<from uri="file:///home/ramu/RamuWorkspace/Test/source" />
+			<to uri="log:com.ramu" />
+			<to uri="direct:A" />
+		</route>
+		<!-- and another route, you can have as many your like -->
+		<route id="bar">
+
+			<from uri="direct:A" />
+			<to uri="log:com.ramu" />
+			<to uri="direct:B" />
+		</route>
+
+		<route id="des">
+			<from uri="direct:B" />
+			<to uri="log:com.ramu" />
+			<to uri="file:///home/ramu/RamuWorkspace/Test/destination" />
+		</route>
+		
+		
+	</camel:camelContext>
+
+</beans>

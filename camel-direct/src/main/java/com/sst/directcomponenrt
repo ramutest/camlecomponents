@@ -1,0 +1,27 @@
+Direct / camel-core
+Synchronous call to another endpoint from same CamelContext.
+Direct Component
+The direct: component provides direct, synchronous invocation of any consumers when a producer sends a message exchange.
+This endpoint can be used to connect existing routes in the same camel context.
+<route id="cool">
+			<from uri="file:///home/ramu/RamuWorkspace/Test/source" />
+			<to uri="log:com.ramu" />
+			<to uri="direct:A" />
+		</route>
+		<!-- and another route, you can have as many your like -->
+		<route id="bar">
+			<from uri="direct:A" />
+			<to uri="log:com.ramu" />
+			<to uri="direct:B" />
+		</route>
+		<route id="des">
+			<from uri="direct:B" />
+			<to uri="log:com.ramu" />
+			<to uri="file:///home/ramu/RamuWorkspace/Test/destination" />
+		</route>
+		
+1)routes file send to source and it move to direct A
+2)direct A is inmemory queue (check in jconsole) of mbeans
+3)form direct A files are move to direct B
+4)form direct B files are move to destination
+so direct is used for inmemory queue for syncronous message

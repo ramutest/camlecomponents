@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:camel="http://camel.apache.org/schema/blueprint"
+       xsi:schemaLocation="
+       http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
+       http://camel.apache.org/schema/blueprint http://camel.apache.org/schema/blueprint/camel-blueprint.xsd">
+
+  <camelContext id="blueprintContext" trace="false" xmlns="http://camel.apache.org/schema/blueprint">
+  
+    
+    <route id="trasferfiles">
+      <from uri="ftp://ramu@localhost:21/RamuWorkspace/Test/source?password=ramu123"/>
+      <log logName="com.sst"   loggingLevel="INFO"  message="CamelProject1: Moving ${file:name} to the output directory. Done************************************************."/>
+      <to uri="file:///home/ramu/RamuWorkspace/Test/destination"/>
+      <log  logName="com.sst" loggingLevel="INFO"  message="CamelProject1: Moving ${file:name} to the output directory. Done.***********************************************"/>
+    </route>
+  </camelContext>
+</blueprint>
+
+<!-- 
+
+ <from uri="ftp://ramu@localhost:21/RamuWorkspace/Test/source?password=ramu123&amp;delete=true"/>
+  <from uri="sftp://ramu@localhost:22/RamuWorkspace/Test/source?password=ramu123&amp;delete=true"/>
+  
+  <from uri="sftp://ramu@localhost:22/RamuWorkspace/Test/source?password=ramu123&amp;delete=true&amp;binary=true"/>
+  delete=true it delete the filse from source locations
+  binary=true  Specifies the file transfer mode, BINARY or ASCII. Default is ASCII (false).
+  
+       <from uri="sftp://ramu@localhost:22/RamuWorkspace/Test/source?password=ramu123&amp;delete=true&amp;binary=true&amp;disconnect=true"/>
+       disconnect=true 
+       if the files are in source it connect to the server
+       if files are moved to the source it disconect the server 
+Connected to sftp://ramu@localhost:22
+Connected and logged in to: sftp://ramu@localhost:22
+Disconnecting from localhost port 22
+
+localWorkDirectory=/home/ramu/RamuWorkspace/Test/localdirectory
+<from uri="sftp://ramu@localhost:22/RamuWorkspace/Test/source?password=ramu123&amp;delete=true&amp;binary=true&amp;disconnect=true&amp;localWorkDirectory=/home/ramu/RamuWorkspace/Test/localdirectory"/>
+
+When consuming, a local work directory can be used to store the remote file content directly in local files, 
+to avoid loading the content into memory
+. This is beneficial, if you consume a very big remote file and thus can conserve memory. 
+
+
+
+
+
+ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
