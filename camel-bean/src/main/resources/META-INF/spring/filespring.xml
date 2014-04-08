@@ -5,8 +5,10 @@
 	<camelContext id="sqsContext" xmlns="http://camel.apache.org/schema/spring">
 	
 	<route>
+	<!-- route start from file to file -->
     <from uri="file:///home/ramu/RamuWorkspace/Test/source"/>
     <to uri="exampleBean"/>
+    <!-- route start from file to file -->
     <to uri="file:///home/ramu/RamuWorkspace/Test/source"/>
   </route>
 	
